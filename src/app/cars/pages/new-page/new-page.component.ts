@@ -73,7 +73,7 @@ export class NewPageComponent {
     });
   }
   onDeleteHero() {
-    if (!this.currentCar.id) throw Error('Hero id is required');
+    if (!this.currentCar.id) throw Error('Car id is required');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data:  this.carForm.value ,
