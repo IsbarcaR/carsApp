@@ -21,7 +21,7 @@ export class AuthService {
       map(response => response.data[0]),//pongo el 0 para obtener el primer usuario (solo hay uno)
       tap(user => {
         
-          this.user = user;
+          this.user = user; 
           localStorage.setItem('token', "pepino");
         
       }),
