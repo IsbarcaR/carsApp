@@ -37,7 +37,7 @@ export class carService {
   deleteCarById(id: string): Observable<boolean> {
     return this.httpClient.delete(`${this.baseURL}${id}`).pipe(
       map((resp) => true),
-      //catchError((err) => of(false))
+      catchError((err) => of(false))
     );
   }
 }
