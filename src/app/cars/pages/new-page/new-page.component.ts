@@ -69,7 +69,7 @@ export class NewPageComponent {
       return;
     }
     this.carService.addCar(this.currentCar).subscribe((car) => {
-      this.showSnackbar(`${car.name} created`);
+      this.showSnackbar(`${this.currentCar.name} created`);
     });
   }
   onDeleteHero() {
@@ -91,7 +91,8 @@ export class NewPageComponent {
     )
     .subscribe(result => {
       this.router.navigateByUrl('');
-    })
+    });
+   
 
 
   }
