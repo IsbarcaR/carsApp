@@ -20,9 +20,10 @@ export class AuthService {
     .pipe(
       map(response => response.data[0]),//pongo el 0 para obtener el primer usuario (solo hay uno)
       tap(user => {
-        
+        if((user.email.toLocaleLowerCase()===email.toLocaleLowerCase())&&(user.pass=== password)){
           this.user = user; 
           localStorage.setItem('token', "pepino");
+        }
         
       }),
       catchError(error => {

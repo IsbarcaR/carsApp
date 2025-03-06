@@ -24,7 +24,7 @@ export class carService {
   }
   getSuggestions(query: string): Observable<Car[]> {
     return this.httpClient
-      .get<{ data: Car[] }>(`${this.baseURL}${query}`)
+      .get<{ data: Car[] }>(`${this.baseURL}?name=${query}`)
       .pipe(map((response) => response.data));
   }
   addCar(car: Car): Observable<Car> {

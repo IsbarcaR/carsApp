@@ -9,8 +9,8 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-     /* canActivate: [PublicGuard],
-    canMatch: [PublicGuard],    *///no se por que funciona solo si estoy logueado a la primera y si deslogueo sigue mandandome al 404
+      canActivate: [PublicGuard],
+    canMatch: [PublicGuard],    //no se por que funciona solo si estoy logueado a la primera y si deslogueo sigue mandandome al 404
   },
   {
     path: 'cars',
