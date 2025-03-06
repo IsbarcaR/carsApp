@@ -46,7 +46,7 @@ export class NewPageComponent {
     type: new FormControl('', { nonNullable: true }),
     brand: new FormControl('', { nonNullable: true }),
     specifications: new FormControl('', { nonNullable: true }),
-    image: new FormControl('', { nonNullable: true }),
+    image: new FormControl(''),
   });
   get currentCar(): Car {
     const car = this.carForm.value as Car;
@@ -57,10 +57,20 @@ export class NewPageComponent {
       duration: 2500,
     });
   }
+  getCarImage(): string {
+    const imageUrl = this.currentCar?.image ? String(this.currentCar.image).trim() : '';
+    return imageUrl ? imageUrl :  'https://enon-cars.com/wp-content/uploads/2024/11/iris.webp';
+  }
+  setDefaultImage(event: Event) {
+    (event.target as HTMLImageElement).src = 'https://enon-cars.com/wp-content/uploads/2024/11/iris.webp';
+  }
 
   onSubmit(): void {
     if (this.carForm.invalid) return;
 
+    if (!this.isValidImageUrl(this.currentCar.image)) {
+      this.currentCar.image = 'https://enon-cars.com/wp-content/uploads/2024/11/iris.webp'; // Usar la imagen por defecto
+    }
     if (this.currentCar.id) {
       this.carService.updateCar(this.currentCar).subscribe((car) => {
         this.router.navigateByUrl('');
@@ -72,12 +82,18 @@ export class NewPageComponent {
       this.showSnackbar(`${this.currentCar.name} created`);
     });
   }
+  isValidImageUrl(url: string): boolean {
+    return typeof url === 'string' && url.match(/\.(jpeg|jpg|gif|png|webp)$/i) !== null;
+  }
+
   onDeleteHero() {
     if (!this.currentCar.id) throw Error('Car id is required');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data:  this.carForm.value ,
     });
+
+    
 
    
     dialogRef.afterClosed()

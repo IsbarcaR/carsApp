@@ -82,7 +82,7 @@
     </div>
     <div class="col-12 sm:col-6">
       <mat-card>
-        <img src="{{ currentCar.image }}" alt="imagen del héroes" mat-card-image>
+        <img [src]="getCarImage()" alt="imagen del héroes" mat-card-image (error)="setDefaultImage($event)">
       </mat-card>
     </div>
   </div>
