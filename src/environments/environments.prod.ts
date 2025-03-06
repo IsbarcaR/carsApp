@@ -1,4 +1,4 @@
 export const environments = {
-    baseURL: 'https://backendcars-fmut.onrender.com/api/v1/cars/'
+    baseURL: 'https://backendcars-jzbg.onrender.com/api/v1/cars/' 
   }
   
