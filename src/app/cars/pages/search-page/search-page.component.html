@@ -1,0 +1,22 @@
+<div class="flex flex-column p-2">
+  <h4>Buscador</h4>
+  <mat-form-field>
+    <mat-label>Buscador de coches</mat-label>
+
+    <input type="text" matInput 
+    [formControl]="searchInput" 
+    (input)="searchCar()"
+    [matAutocomplete]="auto" />
+
+      <mat-autocomplete autoActiveFirstOption 
+      #auto="matAutocomplete"
+      (optionSelected)="onSelectedOption( $event )">
+      <mat-option *ngFor="let car of cars" [value]="car">
+        
+        {{ car.name }}
+      </mat-option>
+
+    </mat-autocomplete>
+  </mat-form-field>
+  
+</div>
